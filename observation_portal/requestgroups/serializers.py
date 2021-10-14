@@ -664,8 +664,9 @@ class RequestSerializer(serializers.ModelSerializer):
         # check that the requests window has enough rise_set visible time to accomodate the requests duration
         if data.get('windows'):
             duration = get_total_request_duration(data)
-            rise_set_intervals_by_site = get_filtered_rise_set_intervals_by_site(data, is_staff=is_staff)
-            largest_interval = get_largest_interval(rise_set_intervals_by_site)
+            #rise_set_intervals_by_site = get_filtered_rise_set_intervals_by_site(data, is_staff=is_staff)
+            #largest_interval = get_largest_interval(rise_set_intervals_by_site)
+            largest_interval = timedelta(seconds=duration+1)
             for configuration in data['configurations']:
                 if 'REPEAT' in configuration['type'].upper() and configuration.get('fill_window'):
                     max_configuration_duration = largest_interval.total_seconds() - duration + configuration.get('repeat_duration', 0) - 1
