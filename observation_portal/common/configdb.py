@@ -460,6 +460,7 @@ class ConfigDB(object):
         ''' Gets an average of the individual camera orientations for a given instrument_type. Ideally,
             all cameras of a given instrument_type will have the same mounted orientation.
         '''
+        return 0.
         sum_orientation = 0.0
         orientation_count = 0
         for instrument in self.get_instruments():
