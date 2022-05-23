@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.utils.translation import ugettext as _
 from math import ceil, floor
 from collections import defaultdict
@@ -71,8 +73,9 @@ def get_request_duration_dict(request_dict, is_staff=False):
             request_overheads = configdb.get_request_overheads(conf['instrument_type'])
             conf_durations.append(get_configuration_duration(conf, request_overheads))
         req_info['configurations'] = conf_durations
-        rise_set_intervals = get_filtered_rise_set_intervals_by_site(req, is_staff=is_staff)
-        req_info['largest_interval'] = get_largest_interval(rise_set_intervals).total_seconds()
+        #rise_set_intervals = get_filtered_rise_set_intervals_by_site(req, is_staff=is_staff)
+        #req_info['largest_interval'] = get_largest_interval(rise_set_intervals).total_seconds()
+        req_info['largest_interval'] = timedelta(seconds=req_info['duration'] + 1)
         req_durations['requests'].append(req_info)
     req_durations['duration'] = sum([req['duration'] for req in req_durations['requests']])
 
