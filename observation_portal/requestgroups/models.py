@@ -521,7 +521,8 @@ class Target(models.Model):
         ('ORBITAL_ELEMENTS', 'ORBITAL_ELEMENTS'),
         ('HOUR_ANGLE', 'HOUR_ANGLE'),
         ('SATELLITE', 'SATELLITE'),
-        ('HGS', 'HGS'),
+        ('HELIOGRAPHIC_STONYHURST', 'HELIOGRAPHIC_STONYHURST'),
+        ('HELIOPROJECTIVE', 'HELIOPROJECTIVE'),
     )
 
     SERIALIZER_EXCLUDE = ('configuration', 'id')

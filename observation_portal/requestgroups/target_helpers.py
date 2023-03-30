@@ -109,20 +109,19 @@ class SatelliteTargetHelper(BaseTargetHelper):
         super().__init__(target)
 
 
-class HGSTargetHelper(BaseTargetHelper):
+class HeliographicStonyhustTargetHelper(BaseTargetHelper):
     def __init__(self, target):
-        self.fields = (
-            'type', 'name', 'ra', 'dec'
-        )
-
+        self.fields = ('type', 'name', 'ra', 'dec')
         self.required_fields = ('ra', 'dec')
+        self.defaults = {}
+        super().__init__(target)
 
-        self.defaults = {
-            'parallax': 0.0,
-            'proper_motion_ra': 0.0,
-            'proper_motion_dec': 0.0,
-            'epoch': 2000.0
-        }
+
+class HelioprojectiveTargetHelper(BaseTargetHelper):
+    def __init__(self, target):
+        self.fields = ('type', 'name', 'ra', 'dec')
+        self.required_fields = ('ra', 'dec')
+        self.defaults = {}
         super().__init__(target)
 
 
@@ -131,5 +130,6 @@ TARGET_TYPE_HELPER_MAP = {
     'ORBITAL_ELEMENTS': OrbitalElementsTargetHelper,
     'SATELLITE': SatelliteTargetHelper,
     'HOUR_ANGLE': ICRSTargetHelper,
-    'HGS': HGSTargetHelper,
+    'HELIOGRAPHIC_STONYHURST': HeliographicStonyhustTargetHelper,
+    'HELIOPROJECTIVE': HelioprojectiveTargetHelper
 }
